@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#!/usr/bin/env bash
+
+echo "Starting AVideo Encoder Network..."
+CONFIG_FILE=/etc/apache2/sites-enabled/000-default.conf
+
+echo "Configure Apache..."
+sed -i 's#SERVER_NAME#'${SERVER_NAME}'#' ${CONFIG_FILE}
+sed -i 's#CONTACT_EMAIL#'${CONTACT_EMAIL}'#' ${CONFIG_FILE}
+
+docker-php-entrypoint apache2-foreground
+#eof

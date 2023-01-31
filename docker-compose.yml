@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    restart: "unless-stopped"
+    ports:
+      - "80:80"
+    environment:
+      DB_MYSQL_HOST: "database"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_NAME: "avideo"
+      DB_MYSQL_USER: "avideo"
+      DB_MYSQL_PASSWORD: "avideo"
+      SERVER_NAME: "localhost"
+      CONTACT_EMAIL: "admin@localhost"
+      WEBSITE_TITLE: "AVideo"
+      MAIN_LANGUAGE: "en_US"
+    volumes:
+      - "./var/www/avideo:/var/www/avideo"
+    depends_on:
+      - database
+    networks:
+      - app_net
+
+  database:
+    image: "mariadb:latest"
+    restart: "unless-stopped"
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      MYSQL_DATABASE: "avideo"
+      MYSQL_USER: "avideo"
+      MYSQL_PASSWORD: "avideo"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.compose/db:/var/lib/mysql
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
