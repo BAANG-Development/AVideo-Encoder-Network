@@ -13,7 +13,7 @@ sed -i 's#CONTACT_EMAIL#'${CONTACT_EMAIL}'#' ${CONFIG_FILE}
 if [ ! "$(ls -A /var/www/html/)" ]; then
     echo "Directory is empty, installing AVideo Encoder Network..."
     cp -R /app/* /var/www/html/
-    chmod -R 755 /var/www/html/
+    chmod -R 777 /var/www/html
 fi
 
 docker-php-entrypoint apache2-foreground
