@@ -9,5 +9,12 @@ echo "Configure Apache..."
 sed -i 's#SERVER_NAME#'${SERVER_NAME}'#' ${CONFIG_FILE}
 sed -i 's#CONTACT_EMAIL#'${CONTACT_EMAIL}'#' ${CONFIG_FILE}
 
+#Check if directory is empty
+if [ ! "$(ls -A /var/www/html/)" ]; then
+    echo "Directory is empty, installing AVideo Encoder Network..."
+    cp -R /app/* /var/www/html/
+    chmod -R 755 /var/www/html/
+fi
+
 docker-php-entrypoint apache2-foreground
 #eof
