@@ -1,5 +1,15 @@
 FROM php:7-apache
 
+ARG DEBIAN_FRONTEND=noninteractive
+
+ENV SERVER_NAME localhost
+ENV SERVER_URL https://localhost/
+
+ENV CREATE_TLS_CERTIFICATE yes
+ENV TLS_CERTIFICATE_FILE /etc/apache2/ssl/localhost.crt
+ENV TLS_CERTIFICATE_KEY /etc/apache2/ssl/localhost.key
+ENV CONTACT_EMAIL admin@localhost
+
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
       git \
