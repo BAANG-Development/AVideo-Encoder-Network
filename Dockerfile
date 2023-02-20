@@ -45,7 +45,7 @@ RUN apt-get install -y --no-install-recommends \
       /root/.cache && \
     a2enmod rewrite expires headers ssl
 
-COPY . /var/www/html
+COPY . /app
 
 COPY deploy/docker-entrypoint /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
