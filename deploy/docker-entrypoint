@@ -12,7 +12,7 @@ sed -i 's#CONTACT_EMAIL#'${CONTACT_EMAIL}'#' ${CONFIG_FILE}
 #Check if directory is empty
 if [ ! "$(ls -A /var/www/html/)" ]; then
     echo "Directory is empty, installing AVideo Encoder Network..."
-    cp -R /app/* /var/www/html/
+    cp -R /app/. /var/www/html/
     chmod -R 766 /var/www/html
     chown -R www-data:www-data /var/www/html
     echo "AVideo Encoder Network installed"
